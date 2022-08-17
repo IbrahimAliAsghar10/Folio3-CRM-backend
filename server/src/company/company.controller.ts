@@ -23,13 +23,6 @@ export class CompanyController {
     async getclientcompany(@Param('Id')Id:number){
         return await this.companyservice.getCC(Id);
     }
-    
-    @Roles(Role.Admin,Role.Host)
-    @UseGuards(AuthGuard('jwt'),RolesGuard)
-    @Post()
-    postcompany(@Body() CompanyCreateDto:companyCreateDto){
-        return this.companyservice.createC(CompanyCreateDto);
-    }
 
     @Roles(Role.Admin,Role.Host)
     @UseGuards(AuthGuard('jwt'),RolesGuard)
@@ -39,6 +32,8 @@ export class CompanyController {
         return this.companyservice.updateIsDeleteC(CompanyUpdatedDto,Id);
     }
     
+    @Roles(Role.Host)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @Get('/hd/:Id')
     async displayhostcompanyById(@Param('Id')Id:number){
         const query = await this.companyservice.showHCById(Id);
@@ -150,7 +145,8 @@ export class CompanyController {
         return {sales,orders,Products,PaymentType,ClientInterest,ProductsList,Dates,SalesData};
     }
 
-
+    @Roles(Role.Client)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @Get('/cd/:Id')
     async displayclientcompanyById(@Param('Id')Id:number){
 

@@ -13,6 +13,9 @@ export class CompanyService {
         @InjectRepository(company)
         private companyRepository: Repository<company>,
     ){}
+
+
+
     async getHC():Promise<company[]>{
         const query = this.companyRepository.find({
             where: {
@@ -22,6 +25,8 @@ export class CompanyService {
         })
         return query;
     }
+
+    
     async getCC(Id:number):Promise<company[]>{
         const query = this.companyRepository.find({
             where: {
@@ -33,9 +38,6 @@ export class CompanyService {
             relations: ['User']
         })
         return query;
-    }
-    createC(CompanyCreateDto:companyCreateDto){
-        return this.companyRepository.save(CompanyCreateDto);
     }
 
 
@@ -65,8 +67,5 @@ export class CompanyService {
             relations:['User.OrderBuy.Orderline.Product','HostCompany.Product']
         });
         return query;
-    }
-    deleteC(Id:number){
-        return this.companyRepository.delete(Id);
     }
 }
