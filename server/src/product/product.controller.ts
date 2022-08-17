@@ -1,36 +1,20 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req ,UseGuards} from '@nestjs/common';
 import { Request } from 'express';
-import { productCreateDto } from './dto/product-create.dto';
-import { productUpdateDto } from './dto/product-update.dto';
 import { ProductService } from './product.service';
-
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('product')
 export class ProductController {
     constructor(private productservice:ProductService){}
 
-    // @Get()
-    // getproduct(){
-    //     return this.productservice.getP();
-    // }
-    // @Post()
-    // postproduct(@Body() ProductCreateDto:productCreateDto){
-    //     return this.productservice.createP(ProductCreateDto);
-    // }
-    // @Patch('/:Id')
-    // update(@Body() ProductUpdatedDto:productUpdateDto,
-    // @Param('Id',ParseIntPipe) Id:number){
-    //     return this.productservice.updateP(ProductUpdatedDto,Id);
-    // }
 
+    @Roles(Role.Host)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @Get('/:Id')
     getProductById(@Param('Id')Id:number){
         return this.productservice.showPById(Id);
     }
-
-    // @Delete('/:Id')
-    // deleteProduct(@Param('Id',ParseIntPipe)Id:number){
-    //     return this.productservice.deleteP(Id);
-    // }
-
 }

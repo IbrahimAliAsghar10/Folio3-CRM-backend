@@ -69,27 +69,27 @@ export class UserService {
         
     }
 
-    async SignIn(UserSigninDto:userSigninDto):Promise<user>{
+    // async SignIn(UserSigninDto:userSigninDto):Promise<user>{
 
-        return await this.userRepository.findOne({
-            where: {
-            Email: UserSigninDto.Email,
-            Password:UserSigninDto.Password,
-        }
-        })
-        .then((result)=>{
-            if (result){
-                return result;
-            }
-            else{
-                throw new HttpException('Account not found',HttpStatus.NOT_FOUND);
-            }
-        })
-        .catch(() => {
-            throw new HttpException('Account not found',HttpStatus.NOT_FOUND);
-        });
+    //     return await this.userRepository.findOne({
+    //         where: {
+    //         Email: UserSigninDto.Email,
+    //         Password:UserSigninDto.Password,
+    //     }
+    //     })
+    //     .then((result)=>{
+    //         if (result){
+    //             return result;
+    //         }
+    //         else{
+    //             throw new HttpException('Account not found',HttpStatus.NOT_FOUND);
+    //         }
+    //     })
+    //     .catch(() => {
+    //         throw new HttpException('Account not found',HttpStatus.NOT_FOUND);
+    //     });
         
-    }
+    // }
 
 
     updateU(UserUpdatedDto:userUpdateDto,Id:number){

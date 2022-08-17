@@ -8,19 +8,23 @@ import { UserService } from './user.service';
 import { HttpExceptionFilter } from 'src/exception-filters/http-exception.filter';
 import { ValidationPipe } from '@nestjs/common';
 import { userSigninDto } from './dto/user-signin.dto';
-
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Role } from 'src/auth/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('user')
 export class UserController {
     
     constructor(private userService: UserService){}
     // @UseGuards(AuthGuard('jwt'))
-    @Get()
-    getuser(){
-        return this.userService.getU();
-    }
+    // @Get()
+    // getuser(){
+    //     return this.userService.getU();
+    // }
 
-    // @UseGuards(AuthGuard('jwt'))
+
+    @Roles(Role.Admin,Role.Host)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @Post('/addcompany')
     async postcompanywithuser(@Body(ValidationPipe) CompanyDetailsDto:any){
         const newCompanyData = await this.userService.addcompany(CompanyDetailsDto["Company"]);
@@ -62,24 +66,24 @@ export class UserController {
         }
     }
 
-    @Post('/signin')
-    async signin(@Body() UserSigninDto:userSigninDto){
-        return await this.userService.SignIn(UserSigninDto);
+    // @Post('/signin')
+    // async signin(@Body() UserSigninDto:userSigninDto){
+    //     return await this.userService.SignIn(UserSigninDto);
 
-    }
+    // }
     
     // @UseGuards(AuthGuard('jwt'))
-    @Patch('/:Id')
-    update(@Body() UserUpdatedDto:userUpdateDto,
-    @Param('Id',ParseIntPipe) Id:number){
-        return this.userService.updateU(UserUpdatedDto,Id);
-    }
+    // @Patch('/:Id')
+    // update(@Body() UserUpdatedDto:userUpdateDto,
+    // @Param('Id',ParseIntPipe) Id:number){
+    //     return this.userService.updateU(UserUpdatedDto,Id);
+    // }
 
-    @UseGuards(AuthGuard('jwt'))
-    @Get('/:Id')
-    getuserById(@Param('Id')Id:number){
-        return this.userService.showUById(Id);
-    }
+    // @UseGuards(AuthGuard('jwt'))
+    // @Get('/:Id')
+    // getuserById(@Param('Id')Id:number){
+    //     return this.userService.showUById(Id);
+    // }
 
 
     @Get(':Email')
@@ -88,9 +92,9 @@ export class UserController {
     }
 
     // @UseGuards(AuthGuard('jwt'))
-    @Delete('/:Id')
-    deleteuser(@Param('Id',ParseIntPipe)Id:number){
-        return this.userService.deleteU(Id);
-    }
+    // @Delete('/:Id')
+    // deleteuser(@Param('Id',ParseIntPipe)Id:number){
+    //     return this.userService.deleteU(Id);
+    // }
 
 }
