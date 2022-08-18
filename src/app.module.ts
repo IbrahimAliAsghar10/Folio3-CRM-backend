@@ -24,15 +24,15 @@ import { UserService } from './user/user.service';
 import { AuthModule } from './auth/auth.module';
 
 
-
+//mysql://b3f2b2ae73d0d4:e0682579@us-cdbr-east-06.cleardb.net/heroku_4a1026990a1e3f2?reconnect=true
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'localhost',
+    host: 'us-cdbr-east-06.cleardb.net',
     port: 3306,
-    username: 'root',
-    password: '1234',
-    database: 'crm',
+    username: 'b3f2b2ae73d0d4',
+    password: 'e0682579',
+    database: 'heroku_4a1026990a1e3f2',
     entities: [role, company, product, order,orderline,user],
     synchronize: true,
     logging:true,
