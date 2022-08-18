@@ -29,7 +29,6 @@ export class UserService {
 
 
     async addcompany(CompanyCreateDto:any):Promise <any>{
-        
         const companyExist = await this.companyRepository.findOne({where: {Name:CompanyCreateDto.Name}});
         // const exist = await this.userRepository.findOne({where: {Email: UserCreateDto.Email}});
         if(!companyExist){
