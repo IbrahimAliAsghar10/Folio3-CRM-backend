@@ -7,6 +7,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { Role } from 'src/auth/role.enum';
 import { Roles } from 'src/auth/roles.decorator';
+import { ConnectableObservable } from 'rxjs';
 
 @Controller('company')
 export class CompanyController {
@@ -166,8 +167,8 @@ export class CompanyController {
 
         let overdueOrders = 0;
 
-        let currentDate = String(dateObj.getDate()).padStart(2, '0') + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + dateObj.getFullYear();
-
+        let currentDate = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+        console.log(currentDate)
         let Products = []
 
         let ProductsList = [];
