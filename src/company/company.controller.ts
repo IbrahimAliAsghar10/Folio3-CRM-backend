@@ -264,6 +264,6 @@ export class CompanyController {
             }
             Products.push({label:ProductsList[i],value:data[i]});
         }
-        return {purchase,orders,PaymentType,Dates,PurchaseData,unpaidOrders,overdueOrders,currentDate,Products,paymentStatus};
+        return {purchase,orders,PaymentType,Dates,PurchaseData,unpaidOrders,overdueOrders,currentDate:0,Products,paymentStatus};
     }
 }
