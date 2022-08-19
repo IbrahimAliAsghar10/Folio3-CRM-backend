@@ -222,7 +222,7 @@ export class CompanyController {
                 {
                     unpaidOrders = unpaidOrders + 1;
                     paymentStatus[1]['value'] = paymentStatus[1]['value'] + Number(query['User'][i]['OrderBuy'][j]['TotalAmount']);
-                    if (currentDate < query['User'][i]['OrderBuy'][j]['LastDate'])
+                    if (currentDate > query['User'][i]['OrderBuy'][j]['LastDate'])
                     {
                         overdueOrders = overdueOrders + 1;
                     }
