@@ -167,7 +167,7 @@ export class CompanyController {
 
         let overdueOrders = 0;
 
-        let currentDate = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+        let currentDate = String(dateObj.getFullYear()) + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
         console.log(currentDate)
         let Products = []
 
