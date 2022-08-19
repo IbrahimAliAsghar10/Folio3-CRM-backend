@@ -167,7 +167,7 @@ export class CompanyController {
 
         let overdueOrders = 0;
 
-        let currentDate = String(dateObj.getFullYear()) + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+        let currentDate = dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
         console.log(currentDate)
         let Products = []
 
@@ -264,6 +264,6 @@ export class CompanyController {
             }
             Products.push({label:ProductsList[i],value:data[i]});
         }
-        return {purchase,orders,PaymentType,Dates,PurchaseData,unpaidOrders,overdueOrders:0,currentDate,Products,paymentStatus};
+        return {purchase,orders,PaymentType,Dates,PurchaseData,unpaidOrders,overdueOrders,currentDate,Products,paymentStatus};
     }
 }
