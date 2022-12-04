@@ -28,11 +28,11 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'ub-cdbr-east-06.cleardb.net',
+    host: 'us-cdbr-east-06.cleardb.net',
     port: 3306,
-    username: 'b3f2b2ae73d0d4',
-    password: 'e0682579',
-    database: 'heroku_4a1026990a1e3f2',
+    username: 'b2ac31884f00df',
+    password: 'e835c88f',
+    database: 'heroku_9f34bc8d704669c',
     entities: [role, company, product, order,orderline,user],
     synchronize: true,
     logging:true,
