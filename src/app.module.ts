@@ -28,7 +28,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'us-cdbr-east-06.cleardb.net',
+    host: 'ub-cdbr-east-06.cleardb.net',
     port: 3306,
     username: 'b3f2b2ae73d0d4',
     password: 'e0682579',
